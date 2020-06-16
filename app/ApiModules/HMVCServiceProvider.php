@@ -5,6 +5,7 @@ namespace App\ApiModules;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use App\ApiModules\Users\UserSeviceProvider;
+use App\ApiModules\Posts\PostSeviceProvider;
 
 class HMVCServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,7 @@ class HMVCServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(UserSeviceProvider::class);
+        $this->app->register(PostSeviceProvider::class);
     }
 
     /**
