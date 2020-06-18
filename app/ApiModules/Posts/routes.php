@@ -10,8 +10,11 @@ $moduleNamespace = "App\ApiModules\Posts\Controllers";
 
 Route::prefix('api/posts')->namespace($moduleNamespace)->group(function () {
     Route::get('', "PostController@index");
-    Route::get('{id}', 'PostController@show');
     Route::post('', 'PostController@store');
+});
+
+Route::prefix('posts')->namespace($moduleNamespace)->group(function () {
+    Route::get('{id}', 'PostController@show');
 });
 
 

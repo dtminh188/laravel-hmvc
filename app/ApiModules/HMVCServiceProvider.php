@@ -9,6 +9,11 @@ use App\ApiModules\Posts\PostSeviceProvider;
 
 class HMVCServiceProvider extends ServiceProvider
 {
+    private $configFile = [
+        // alias => config file location/path
+        'postconfig' => 'Posts/Configs/config.php',
+    ];
+
     /**
      * Register any application services.
      *
@@ -16,6 +21,10 @@ class HMVCServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // register your config file here
+        foreach ($this->configFile as $alias => $path) {
+            $this->mergeConfigFrom(__DIR__ . "/" . $path, $alias);
+        }
         $this->app->register(UserSeviceProvider::class);
         $this->app->register(PostSeviceProvider::class);
     }
@@ -48,6 +57,11 @@ class HMVCServiceProvider extends ServiceProvider
         // boot views
         if (File::exists($modulePath . "Views")) {
             $this->loadViewsFrom($modulePath . "Views", $moduleName);
+        }
+
+        // boot languages
+        if (File::exists($modulePath . "Languages")) {
+            $this->loadTranslationsFrom($modulePath . "Languages", $moduleName);
         }
     }
 }

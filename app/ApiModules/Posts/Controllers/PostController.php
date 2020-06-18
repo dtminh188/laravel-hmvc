@@ -26,14 +26,14 @@ class PostController extends Controller {
         return PostListResource::collection($list);
     }
 
-    public function show($id) {
-        $post = $this->postRepo->getById($id);
-        return new PostListResource($post);
-    }
-
     public function store(CreatePostRequest $request)
     {
         $post = $this->postRepo->create($request);
         return new PostListResource($post);
+    }
+
+    public function show($id) {
+        $post = $this->postRepo->getById($id);
+        return view('Posts::edit', ['post' => $post]);
     }
 }
