@@ -9,4 +9,6 @@ $moduleNamespace = "App\ApiModules\Users\Controllers";
 
 Route::prefix('api/users')->namespace($moduleNamespace)->group(function () {
     Route::get('', "UserController@index");
+    Route::post('', "UserController@store");
+    Route::get('{id}', "UserController@show");
 });
